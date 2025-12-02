@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportHabFrecuente" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e7eebaa4-068b-407f-bf7a-d4c2e72a1292">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conection MySQL"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
+    <style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+    <queryString language="SQL">
+        <![CDATA[SELECT
+    th.IdTipohabitacion,
+    th.descripcion,
+    COUNT(r.IDhabitacion) AS cantidad_reservas
+FROM
+    reserva r
+INNER JOIN
+    tipohabitacion th ON r.IDhabitacion = th.IdTipohabitacion
+WHERE
+    r.activo = 1 AND th.activo = 1
+GROUP BY
+    th.IdTipohabitacion, th.descripcion
+ORDER BY
+    cantidad_reservas DESC
+LIMIT 2;]]>
+    </queryString>
+    <field name="IdTipohabitacion" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.name" value="IDTipoHabitacion"/>
+        <property name="com.jaspersoft.studio.field.label" value="IdTipohabitacion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="tipohabitacion"/>
+    </field>
+    <field name="descripcion" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="Descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="tipohabitacion"/>
+    </field>
+    <field name="cantidad_reservas" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.name" value="cantidad_reservas"/>
+        <property name="com.jaspersoft.studio.field.label" value="cantidad_reservas"/>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="78" splitType="Stretch">
+            <staticText>
+                <reportElement style="Title" x="310" y="10" width="263" height="33" uuid="3eb8e1ab-7e38-4368-89db-62b6501a8c67"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Hospedaje Ica]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SubTitle" x="310" y="43" width="242" height="26" uuid="0b5308cc-82cf-49a0-8011-6f875d4c5e32"/>
+                <textElement textAlignment="Left">
+                    <font size="10"/>
+                </textElement>
+                <text><![CDATA[Direccion: Calle Sebastián Barranca 486 Urb. San Miguel, Ica, Peru]]></text>
+            </staticText>
+            <image>
+                <reportElement x="0" y="0" width="120" height="60" uuid="95bc3005-cd20-4c44-a6b6-da0bf9e66703"/>
+                <imageExpression><![CDATA["repo:reports/images/carrusel0.jpg"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="36" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="d69c6691-e92e-45c5-bf2d-c1dc15dabb91"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement style="Column header" mode="Opaque" x="0" y="19" width="185" height="15" backcolor="#66FF08" uuid="9109e4e8-f04b-4722-b179-247df9e978d8">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2f644b5-aa14-44ea-9e87-3ca9b09213ab"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Tipo De Habitacion]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" mode="Opaque" x="185" y="19" width="185" height="15" backcolor="#66FF08" uuid="8ca74fb0-42ff-45b7-8185-3ae6b12640ea">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd70dd28-931d-4132-92fa-ac52cdb867e4"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Descripción]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" mode="Opaque" x="370" y="19" width="185" height="15" backcolor="#66FF08" uuid="8480ff7b-0eff-4a67-93a7-6633a2cc841e">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="20b52fa4-0f92-42c4-8112-9ac454a522dd"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Cantidad de Reservas]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="16" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="f367c019-9cb7-431c-8713-5a96f9b889aa"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <textField>
+                <reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="9b08cfe3-28df-4598-b8eb-37aa126af0b6">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2f644b5-aa14-44ea-9e87-3ca9b09213ab"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{IdTipohabitacion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="e6d42b2b-9c2b-4adb-869d-7d94ff53b4b8">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd70dd28-931d-4132-92fa-ac52cdb867e4"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="603dbccd-f550-4df4-8a19-e1bde1e2f7d6">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="20b52fa4-0f92-42c4-8112-9ac454a522dd"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{cantidad_reservas}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="02519f40-8679-4e40-a1f1-699bc025a206"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="6f13e17d-4b46-4ede-ab63-9d2685ec9c16"/>
+                <textElement textAlignment="Right">
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="6857db7e-824a-4cda-b8dc-fe5c95aca145"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="ef9fc35f-c45f-4ec6-a5cc-ec2020109ea7"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
+</jasperReport>

@@ -11,6 +11,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="TipoHabitacion")
 @Getter
@@ -22,7 +26,7 @@ public class TipoHabitacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long IDTipoHabitacion;
     @NotEmpty(message = "No puede estar vacio")
-    private String Descripcion;
+    private String descripcion;
     @NotNull(message = "No puede estar vacio")
     @Positive(message = "Ingrese cantidad correcta")
     private Short CantidadCamas;
@@ -32,6 +36,7 @@ public class TipoHabitacion {
     private boolean activo=true;
 
     @OneToMany(mappedBy = "tipoHabitacion")
+    @JsonManagedReference
     private List<Habitacion> habitaciones;
 
 }

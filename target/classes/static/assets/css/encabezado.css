@@ -1,0 +1,39 @@
+.header {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.logo img {
+    max-width: 100px;
+    vertical-align: middle;
+}
+
+.user img{
+    max-width: 50px;
+    vertical-align: middle;
+}
+
+.nav-list {
+    display: flex;
+    gap: 150px;
+    margin-left: 100px;
+    align-items: center;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: #009900;
+}

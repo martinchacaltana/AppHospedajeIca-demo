@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entidades.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,10 +43,9 @@ public class ReservaImpl implements ServicioGenerico<Reserva>{
     @Transactional
     public Reserva guardar(Reserva entity) throws Exception {
         try {
-            Reserva reserva = this.reservaRepositorio.save(entity);
-            return reserva;
-        }catch (Exception e) {
-            throw new Exception(e.getMessage());
+            return reservaRepositorio.save(entity);
+        } catch (Exception e) {
+            throw new Exception("Error al guardar la reserva: " + e.getMessage());
         }
     }
 
@@ -88,4 +88,7 @@ public class ReservaImpl implements ServicioGenerico<Reserva>{
         }
     }
 
+    public List<Reserva> obtenerReservasPorUsuario(Integer clienteid) {
+        return reservaRepositorio.findByCliente_Id(clienteid);
+    }
 }

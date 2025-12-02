@@ -1,0 +1,144 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+main {
+    padding: 20px;
+}
+
+.welcome-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+.carousel-image {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+}
+.services {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.services h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-item {
+    flex: 1 1 150px;
+    text-align: center;
+}
+
+.service-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.service-item p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #666;
+}
+
+.why-stay {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.why-stay h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.why-stay p {
+    font-size: 16px;
+    color: #666;
+}
+
+.testimonials {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #009900;
+    color: white;
+}
+
+.testimonials h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.testimonials-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.testimonial {
+    background: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.testimonial:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15px 15px 15px;
+    border-color: transparent transparent white transparent;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Rooms section */
+.rooms {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.rooms h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.rooms p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.rooms .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #009900;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.rooms .btn:hover {
+    background-color: #006600;
+}

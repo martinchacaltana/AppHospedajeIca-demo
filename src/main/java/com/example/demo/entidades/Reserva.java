@@ -1,17 +1,12 @@
 package com.example.demo.entidades;
 
 import java.time.LocalDate;
+import java.util.Date;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +25,8 @@ public class Reserva {
     private long IDReserva;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IDCliente", nullable = false)
-    private Cliente cliente;
+    @JoinColumn(name = "id", nullable = false)
+    private AppUser cliente;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IDHabitacion", nullable = false)
@@ -50,6 +45,10 @@ public class Reserva {
     @NotNull(message = "No puede dejarse en blanco")
     @Future(message = "Ingrese fecha valida")
     private  LocalDate fechasalida;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private Date fechaCreacion;
 
     private boolean estadoreserva;
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/fragments/head :: head"></head>
+<body>
+<div class="main-wrapper">
+    <div th:replace="/fragments/header :: div"></div>
+    <div th:replace="/fragments/sidebar :: div"></div>
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="mt-5">
+                            <h4 class="card-title float-left mt-2">Tipos de habitacion</h4> <a th:href="@{/tipohabitacion/form/0}" class="btn btn-primary float-right veiwbutton">Anadir Tipo Habitacion</a> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body booking_card">
+                            <div class="table-responsive">
+                                <table class="datatable table table-stripped table table-hover table-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Descripcion</th>
+                                        <th>CantidadCamas</th>
+                                        <th>MaximoPersonas</th>
+                                        <th class="text-right">Acciones</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="tipohabitacion : ${tipohabitaciones}">
+                                        <td th:text="${tipohabitacion.IDTipoHabitacion}"></td>
+                                        <td th:text="${tipohabitacion.descripcion}"></td>
+                                        <td th:text="${tipohabitacion.cantidadCamas}"></td>
+                                        <td th:text="${tipohabitacion.maximoPersonas}"></td>
+                                        <td class="text-center">
+                                            <div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right"> <a th:href="@{/tipohabitacion/form/{id}(id=${tipohabitacion.IDTipoHabitacion})}" class="dropdown-item" href="edit-customer.html"><i class="fas fa-pencil-alt m-r-5"></i> EDITAR</a> <a th:href="@{/tipohabitacion/{id}(id=${tipohabitacion.IDTipoHabitacion})}" class="dropdown-item" href="edit-customer.html"><i class="fas fa-pencil-alt m-r-5"></i> BORRAR</a> </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables/datatables.min.js"></script>
+<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/plugins/raphael/raphael.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+</body>
+
+</html>

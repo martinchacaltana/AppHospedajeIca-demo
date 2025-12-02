@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,17 @@ public class HabitacionDaoImpl implements ServicioGenerico<Habitacion> {
             Optional<Habitacion> opt = this.habitacionRepositorio.findByIdAAndActivo(id);
             return opt.get();
         }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
+    @Transactional
+    public List<Habitacion> encontrarHabitacionesDisponibles(String descripcion, LocalDate fechaEntrada,
+                                                             LocalDate fechaSalida) throws Exception {
+        try {
+            return habitacionRepositorio.encontrarHabitacionesDisponibles(descripcion, fechaEntrada, fechaSalida);
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }

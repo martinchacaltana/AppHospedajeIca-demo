@@ -3,25 +3,23 @@ package com.example.demo.dao;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entidades.AppUser;
+import com.example.demo.repositorio.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.entidades.Cliente;
-import com.example.demo.repositorio.ClienteRepositorio;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class ClienteImpl implements ServicioGenerico<Cliente>{
+public class ClienteImpl implements ServicioGenerico<AppUser>{
     @Autowired 
-    private ClienteRepositorio clienteRepositorio;
+    private AppUserRepository appUserRepository;
 
     @Override
     @Transactional
-    public List<Cliente> listar() throws Exception {
+    public List<AppUser> listar() throws Exception {
         try {
-            List<Cliente> lista = this.clienteRepositorio.findAllByActivo();
-            return lista;
+            return this.appUserRepository.findAllByActivo();
         }catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -29,9 +27,9 @@ public class ClienteImpl implements ServicioGenerico<Cliente>{
 
     @Override
     @Transactional
-    public Cliente buscarporId(long id) throws Exception {
+    public AppUser buscarporId(long id) throws Exception {
         try {
-            Optional<Cliente> obj = this.clienteRepositorio.findById(id);
+            Optional<AppUser> obj = this.appUserRepository.findById((int) id);
             return obj.get();
         }catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -40,9 +38,9 @@ public class ClienteImpl implements ServicioGenerico<Cliente>{
 
     @Override
     @Transactional
-    public Cliente guardar(Cliente entity) throws Exception {
+    public AppUser guardar(AppUser entity) throws Exception {
         try {
-            Cliente cliente = this.clienteRepositorio.save(entity);
+            AppUser cliente = this.appUserRepository.save(entity);
             return cliente;
         }catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -51,19 +49,22 @@ public class ClienteImpl implements ServicioGenerico<Cliente>{
 
     @Override
     @Transactional
-    public Cliente actualizar(Cliente entity, long id) throws Exception {
+    public AppUser actualizar(AppUser entity, long id) throws Exception {
         try {
-            Optional<Cliente> obj = this.clienteRepositorio.findById(id);
+            Optional<AppUser> obj = this.appUserRepository.findById((int) id);
             if (obj.isPresent()) {
-                Cliente cliente = obj.get();
-                cliente.setNombre(entity.getNombre());
+                AppUser cliente = obj.get();
+                cliente.setFirstName(entity.getFirstName());
+                cliente.setLastName(entity.getLastName());
+                cliente.setEmail(entity.getEmail());
                 cliente.setDocumento(entity.getDocumento());
-                cliente.setNumerodocumento(entity.getNumerodocumento());
-                cliente.setCorreo(entity.getCorreo());
+                cliente.setNumeroDocumento(entity.getNumeroDocumento());
                 cliente.setFechanacimiento(entity.getFechanacimiento());
-                return this.clienteRepositorio.save(cliente);
+                cliente.setPhone(entity.getPhone());
+                // No actualizamos password aqui por seguridad, usualmente se hace en otro metodo
+                return this.appUserRepository.save(cliente);
             }else{
-                throw new Exception("Documento no encontrada con id: " + id);            }
+                throw new Exception("Usuario no encontrado con id: " + id);            }
         }catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -73,11 +74,11 @@ public class ClienteImpl implements ServicioGenerico<Cliente>{
     @Transactional
     public boolean eliminarporId(long id) throws Exception {
         try {
-            Optional<Cliente> obj = this.clienteRepositorio.findById(id);
+            Optional<AppUser> obj = this.appUserRepository.findById((int) id);
             if(!obj.isEmpty()){
-                Cliente cliente = obj.get();
-                cliente.setActivo(!cliente.isActivo());
-                this.clienteRepositorio.save(cliente);
+                AppUser cliente = obj.get();
+                cliente.setEnabled(!cliente.isEnabled());
+                this.appUserRepository.save(cliente);
             }else{
                 throw new Exception();
             }
@@ -86,5 +87,4 @@ public class ClienteImpl implements ServicioGenerico<Cliente>{
             throw new Exception(e.getMessage());
         }
     }
-
 }

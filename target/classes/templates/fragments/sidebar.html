@@ -1,0 +1,59 @@
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li class="active"> <a th:href="@{/dashboard}"><i class="fas fa-tachometer-alt"></i> <span>Menu Principal</span></a> </li>
+                <li class="list-divider"></li>
+                <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Reservas </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a th:href="@{/reserva}"> Todas las reservas </a></li>
+                        <li><a th:href="@{/reserva/form/0}"> Anadir reservas </a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Clientes </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a th:href="@{/cliente}"> Todos los clientes </a></li>
+                        <li><a th:href="@{/cliente/form/0}"> Anadir cliente </a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Habitaciones </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a th:href="@{/habitacion}">Todas las Habitaciones </a></li>
+                        <li><a th:href="@{/tipohabitacion}">Tipos de habitaciones </a></li>
+                        <li><a th:href="@{/habitacion/form/0}"> Anadir habitacion </a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="fas fa-tags"></i> <span> Resenas </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a th:href="@{/categorias}">Ver las resenas</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="fas fa-credit-card"></i> <span> Documentos </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a th:href="@{/documento}">Todos los documentos</a></li>
+                        <li><a th:href="@{/documento/form/0}"> Anadir documento</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="far fa-file-alt"></i> <span> Empleados </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a href="../static/all-tipodocumento.html">Todos los empleados</a></li>
+                        <li><a href="../static/add-tipodocumento.html"> Anadir empleado</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="fas fa-receipt"></i> <span> Comprobante </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a href="../static/all-detalleventa.html">Todos los comprobantes</a></li>
+                        <li><a href="../static/add-detalleventa.html"> Anadir Detalle</a></li>
+                    </ul>
+                </li>
+                <li class="submenu" sec:authorize="hasRole('ADMIN')">
+                    <a href="#"><i class="fas fa-receipt"></i> <span> Usuarios </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a href="../static/all-detalleventa.html">Todos los usuarios</a></li>
+                        <li><a href="../static/add-detalleventa.html"> Añadir usuario</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

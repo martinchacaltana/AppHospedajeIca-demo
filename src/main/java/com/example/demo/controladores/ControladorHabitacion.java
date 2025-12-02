@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class ControladorHabitacion {
+public class    ControladorHabitacion {
     @Autowired
     private HabitacionDaoImpl servicioHabitacion;
     @Autowired
